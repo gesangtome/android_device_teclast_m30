@@ -29,11 +29,11 @@ $(call inherit-product, vendor/omni/config/common.mk)
 $(call inherit-product, vendor/omni/config/cdma.mk)
 
 # Inherit device configuration
-$(call inherit-product, device/teclast/m204g/teclast.mk)
+$(call inherit-product, device/teclast/M30/teclast.mk)
 
 ## Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := m204g
-PRODUCT_NAME := omni_m204g
+PRODUCT_DEVICE := M30
+PRODUCT_NAME := omni_M30
 PRODUCT_BRAND := Teclast
-PRODUCT_MODEL := Teclast M204G
+PRODUCT_MODEL := Teclast M30
 PRODUCT_MANUFACTURER := Teclast

@@ -16,7 +16,7 @@
 USE_CAMERA_STUB := true
 
 # inherit from the proprietary version
--include vendor/Teclast/M204G/BoardConfigVendor.mk
+-include vendor/Teclast/M30/BoardConfigVendor.mk
 
 # Architecture
 TARGET_ARCH := arm64
@@ -47,7 +47,7 @@ TARGET_BOOTLOADER_BOARD_NAME := mt6797
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_BLUETOOTH_DOES_NOT_USE_RFKILL := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/teclast/m204g/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/teclast/M30/bluetooth
 
 # Deodex
 ifeq ($(HOST_OS),linux)
@@ -85,7 +85,7 @@ USE_OPENGL_RENDERER := true
 TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 
-BOARD_EGL_CFG := device/teclast/m204g/display/egl.cfg
+BOARD_EGL_CFG := device/teclast/M30/display/egl.cfg
 
 # GPS
 BOARD_GPS_LIBRARIES := true
@@ -93,10 +93,10 @@ BOARD_CONNECTIVITY_MODULE := conn_soc
 BOARD_MEDIATEK_USES_GPS := true
 
 # Header
-TARGET_SPECIFIC_HEADER_PATH := device/teclast/m204g/include
+TARGET_SPECIFIC_HEADER_PATH := device/teclast/M30/include
 
 # Kernel
-TARGET_PREBUILT_KERNEL := device/teclast/m204g/kernel-dtb
+TARGET_PREBUILT_KERNEL := device/teclast/M30/kernel-dtb
 
 BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2 buildvariant=user
 BOARD_KERNEL_BASE := 0x40078000
@@ -126,7 +126,7 @@ TARGET_SCREEN_WIDTH := 2560
 TARGET_SCREEN_HEIGHT := 1600
 
 # SYSTEM
-TARGET_SYSTEM_PROP := device/teclast/m204g/system.prop
+TARGET_SYSTEM_PROP := device/teclast/M30/system.prop
 
 # TWRP
 DEVICE_RESOLUTION := 2560x1600

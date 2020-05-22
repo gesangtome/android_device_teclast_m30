@@ -17,9 +17,9 @@
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
-$(call inherit-product-if-exists, vendor/teclast/m204g/m204g--vendor.mk)
+$(call inherit-product-if-exists, vendor/teclast/M30/M30-vendor.mk)
 
-DEVICE_PACKAGE_OVERLAYS += device/teclast/m204g/overlay
+DEVICE_PACKAGE_OVERLAYS += device/teclast/M30/overlay
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -176,14 +176,14 @@ PRODUCT_COPY_FILES += \
 
 # Audio
 PRODUCT_COPY_FILES += \
-    device/teclast/m204g/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf \
-    device/teclast/m204g/audio/audio_policy.conf:system/vendor/etc/audio_policy.conf \
-    device/teclast/m204g/media/media_codecs.xml:system/vendor/etc/media_codecs.xml \
-    device/teclast/m204g/media/media_codecs_mediatek_audio.xml:system/vendor/etc/media_codecs_mediatek_audio.xml \
-    device/teclast/m204g/media/media_codecs_mediatek_video.xml:system/vendor/etc/media_codecs_mediatek_video.xml \
-    device/teclast/m204g/media/media_codecs_performance.xml:system/vendor/etc/media_codecs_performance.xml \
-    device/teclast/m204g/media/media_profiles.xml:system/etc/media_profiles.xml \
-    device/teclast/m204g/media/mtk_omx_core.cfg:system/vendor/etc/mtk_omx_core.cfg
+    device/teclast/M30/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf \
+    device/teclast/M30/audio/audio_policy.conf:system/vendor/etc/audio_policy.conf \
+    device/teclast/M30/media/media_codecs.xml:system/vendor/etc/media_codecs.xml \
+    device/teclast/M30/media/media_codecs_mediatek_audio.xml:system/vendor/etc/media_codecs_mediatek_audio.xml \
+    device/teclast/M30/media/media_codecs_mediatek_video.xml:system/vendor/etc/media_codecs_mediatek_video.xml \
+    device/teclast/M30/media/media_codecs_performance.xml:system/vendor/etc/media_codecs_performance.xml \
+    device/teclast/M30/media/media_profiles.xml:system/etc/media_profiles.xml \
+    device/teclast/M30/media/mtk_omx_core.cfg:system/vendor/etc/mtk_omx_core.cfg
 
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/vendor/etc/media_codecs_google_audio.xml \
@@ -192,22 +192,22 @@ PRODUCT_COPY_FILES += \
 
 # RAMDISK
 PRODUCT_COPY_FILES += \
-    device/teclast/m204g/fstab.mt6797:root/fstab.mt6797 \
-    device/teclast/m204g/ramdisk/init.mt6797.rc:root/init.mt6797.rc \
-    device/teclast/m204g/ramdisk/init.connectivity.rc:root/init.connectivity.rc \
-    device/teclast/m204g/ramdisk/init.mt6797.usb.rc:root/init.mt6797.usb.rc \
-    device/teclast/m204g/ramdisk/init.project.rc:root/init.project.rc \
-    device/teclast/m204g/ramdisk/init.aee.rc:root/init.aee.rc \
-    device/teclast/m204g/ramdisk/init.mal.rc:root/init.mal.rc \
-    device/teclast/m204g/ramdisk/init.sensor.rc:root/init.sensor.rc \
-    device/teclast/m204g/ramdisk/init.modem.rc:root/init.modem.rc \
-    device/teclast/m204g/ramdisk/ueventd.mt6797.rc:root/ueventd.mt6797.rc
+    device/teclast/M30/fstab.mt6797:root/fstab.mt6797 \
+    device/teclast/M30/ramdisk/init.mt6797.rc:root/init.mt6797.rc \
+    device/teclast/M30/ramdisk/init.connectivity.rc:root/init.connectivity.rc \
+    device/teclast/M30/ramdisk/init.mt6797.usb.rc:root/init.mt6797.usb.rc \
+    device/teclast/M30/ramdisk/init.project.rc:root/init.project.rc \
+    device/teclast/M30/ramdisk/init.aee.rc:root/init.aee.rc \
+    device/teclast/M30/ramdisk/init.mal.rc:root/init.mal.rc \
+    device/teclast/M30/ramdisk/init.sensor.rc:root/init.sensor.rc \
+    device/teclast/M30/ramdisk/init.modem.rc:root/init.modem.rc \
+    device/teclast/M30/ramdisk/ueventd.mt6797.rc:root/ueventd.mt6797.rc
 
 # SECCOMP
 PRODUCT_COPY_FILES += \
-    device/teclast/m204g/seccomp/mediacodec.policy:system/vendor/etc/seccomp_policy/mediacodec.policy
+    device/teclast/M30/seccomp/mediacodec.policy:system/vendor/etc/seccomp_policy/mediacodec.policy
 
 # SPN
 PRODUCT_COPY_FILES += \
-    device/teclast/m204g/network/spn-conf.xml:system/etc/spn-conf.xml
+    device/teclast/M30/network/spn-conf.xml:system/etc/spn-conf.xml
 
