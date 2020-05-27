@@ -164,8 +164,8 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_RECOVERY_QCOM_RTC_FIX := true
 
 # Whether the twrp include jpeg?
-# Default: true
-TW_INCLUDE_JPEG := true
+# Default: NULL
+# TW_INCLUDE_JPEG := 
 
 # Whether the twrp have legacy props?
 # Default: false
