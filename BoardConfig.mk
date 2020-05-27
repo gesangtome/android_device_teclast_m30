@@ -47,6 +47,7 @@ TARGET_BOOTLOADER_BOARD_NAME := mt6797
 TARGET_USERIMAGES_USE_F2FS := true
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_COPY_OUT_VENDOR := vendor
+BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 
 BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
@@ -71,42 +72,138 @@ BOARD_MKBOOTIMG_ARGS := --kernel_offset $(BOARD_KERNEL_OFFSET) --ramdisk_offset 
 # SELinux
 BOARD_SEPOLICY_DIRS := vendor/omni/sepolicy
 
-# Screen W/H
-TARGET_SCREEN_WIDTH := 2560
-TARGET_SCREEN_HEIGHT := 1600
+# =======================
+#       TWRP FLAGS
+# =======================
 
-# TWRP
-DEVICE_RESOLUTION := 2560x1600
-BOARD_HAS_LARGE_FILESYSTEM := true
-BOARD_HAS_NO_SELECT_BUTTON := false
-BOARD_RECOVERY_SWIPE := true
-RECOVERY_SDCARD_ON_DATA := true
-TARGET_RECOVERY_PIXEL_FORMAT := "RGBA_8888"
-
+# Whether to use the vertical theme?
+# Default: landscape_hdpi
 TW_THEME := landscape_hdpi
-TW_DEVICE_VERSION := $(shell date "+%Y-%m-%d %H:%M:%S")
-TW_BUILD_HOST := $(HOST_OS_EXTRA)
-TW_USE_TOOLBOX := true
-TW_INCLUDE_JPEG := true
-TW_DEFAULT_BRIGHTNESS := 190
-TW_MAX_BRIGHTNESS := 255
-TW_BRIGHTNESS_PATH := /sys/devices/platform/leds-mt65xx/leds/lcd-backlight/brightness
-TW_CUSTOM_BATTERY_PATH := /sys/devices/platform/battery/power_supply/battery
-TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone1/temp
 
-TW_EXCLUDE_SUPERSU := true
-TW_EXCLUDE_TWRPAPP := true
-TW_INCLUDE_NTFS_3G := true
+# Whether to use extended languages?
+# Default: Chinese - The People's Republic of China
 TW_EXTRA_LANGUAGES := true
 TW_DEFAULT_LANGUAGE := zh_CN
+
+# Whether to use the toolbox?
+# Default: toolbox
+TW_USE_TOOLBOX := true
+
+# Whether to use the ntfs filesystem module?
+# Default: ntfs-3g
+TW_INCLUDE_NTFS_3G := true
+
+# Whether to use input blacklist?
+# Default: hbtp_vm
+TW_INPUT_BLACKLIST := "hbtp_vm"
+
+# Whether to set the panel brightness?
+# Default: 160
+# Max: 255
+TW_DEFAULT_BRIGHTNESS := 1500
+TW_MAX_BRIGHTNESS := 4095
+
+# Whether to set the panel brightness path?
+# Default: /sys/devices/platform/leds-mt65xx/leds/lcd-backlight/brightness
+TW_BRIGHTNESS_PATH := "/sys/devices/platform/leds-mt65xx/leds/lcd-backlight/brightness"
+
+# Whether the twrp custom battery paths?
+# Default: /sys/devices/platform/battery/power_supply/battery
+TW_CUSTOM_BATTERY_PATH := "/sys/devices/platform/battery/power_supply/battery"
+
+# Whether the twrp custom temp paths?
+# Default: /sys/devices/virtual/thermal/thermal_zone1/temp
+TW_CUSTOM_CPU_TEMP_PATH := "/sys/devices/virtual/thermal/thermal_zone1/temp"
+
+# Whether to customize the lun file path?
+# Default: /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file
+# TARGET_USE_CUSTOM_LUN_FILE_PATH := "/config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file"
+
+# Whether to exclude generic init.{variants}.rc?
+# Default: true
+TW_EXCLUDE_DEFAULT_USB_INIT := true
+
+# Whether to add recovery device module?
+# Default: android.hardware.boot
+# TARGET_RECOVERY_DEVICE_MODULES += android.hardware.boot@1.0
+
+# Whether to customize the display pixel format?
+# Default: BGRA_8888
+TARGET_RECOVERY_PIXEL_FORMAT := BGRA_8888
+
+# Whether to display a blank screen when bootimg recovery?
+# Default: false
+TW_SCREEN_BLANK_ON_BOOT := false
+
+# Whether to prompt 'install twrp app' when restarting
+# Default: false
+TW_EXCLUDE_TWRPAPP := true
+
+# Whether the device has a real sdcard?
+# Default: false
+BOARD_HAS_NO_REAL_SDCARD := true
+
+# Whether the SD card of the device is in userdata?
+# Default: true
+RECOVERY_SDCARD_ON_DATA := true
+
+# Whether the twrp need logcat binary?
+# Default: true
+TWRP_INCLUDE_LOGCAT := true
+
+# Whether the twrp need logd binary?
+# Default: false
+TARGET_USES_LOGD := true
+
+# Whether the board has an large file system?
+# Default: true
+BOARD_HAS_LARGE_FILESYSTEM := true
+
+# Whether the twrp need qcom RTC fix?
+# Default: true
+TARGET_RECOVERY_QCOM_RTC_FIX := true
+
+# Whether the twrp include jpeg?
+# Default: true
+TW_INCLUDE_JPEG := true
+
+# Whether the twrp have legacy props?
+# Default: false
+TW_NO_LEGACY_PROPS := true
+
+# Whether to prompt 'install supersu' when restarting
+# Default: false
+TW_EXCLUDE_SUPERSU := true
+
+# Whether the twrp need CRYPTO?
+# Default: true
 TW_INCLUDE_CRYPTO := true
+
+# Whether to use system vold to handle decryption?
+# Default: true
 TW_CRYPTO_USE_SYSTEM_VOLD := true
 
-TW_INTERNAL_STORAGE_PATH := "/internal_sd"
-TW_INTERNAL_STORAGE_MOUNT_POINT := "/data/media/0"
-
-ifeq ($(TARGET_BUILD_VARIANT),eng)
-   TWRP_INCLUDE_LOGCAT := true
-   TARGET_USES_LOGD := true
-endif
+# SHRP-specific lines
+SHRP_PATH := device/nubia/nx627j
+SHRP_MAINTAINER := gesangtome
+SHRP_DEVICE_CODE := NX627J
+SHRP_EDL_MODE := 1
+# SHRP_EXTERNAL := /external_sd
+SHRP_INTERNAL := /sdcard
+SHRP_OTG := /usb_otg
+SHRP_FLASH := 1
+# SHRP_CUSTOM_FLASHLIGHT := true
+#SHRP_FONP_1 := /sys/class/leds/led:torch_0/brightness
+#SHRP_FONP_2 := /sys/class/leds/led:torch_1/brightness
+#SHRP_FONP_3 := /sys/class/leds/led:torch_2/brightness
+#SHRP_FONP_4 := /sys/class/leds/led:switch_0/brightness
+#SHRP_FONP_5 := /sys/class/leds/led:switch_1/brightness
+#SHRP_FONP_6 := /sys/class/leds/led:switch_2/brightness
+SHRP_FLASH_MAX_BRIGHTNESS := 200
+SHRP_REC := /dev/block/bootdevice/by-name/recovery
+SHRP_REC_TYPE := Treble
+SHRP_DEVICE_TYPE := A_Only
+SHRP_STATUSBAR_RIGHT_PADDING := 80
+SHRP_STATUSBAR_LEFT_PADDING := 80
+SHRP_EXPRESS := true
 
