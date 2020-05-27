@@ -1,18 +1,18 @@
 #
-# Copyright (c) 2017-2019 Flowertome
+# Copyright (C) 2019-2020 The TwrpBuilder Open-Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#      http://www.apache.org/licenses/LICENSE-2.0
+# http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+#
 USE_CAMERA_STUB := true
 
 # inherit from the proprietary version
@@ -34,7 +34,6 @@ TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a53
 
 TARGET_IS_64_BIT :=true
-TARGET_BOARD_SUFFIX := _64
 TARGET_USES_64_BIT_BINDER := true
 
 # Board
@@ -43,28 +42,6 @@ TARGET_BOARD_PLATFORM := mt6797
 # Bootloader
 TARGET_NO_BOOTLOADER := true
 TARGET_BOOTLOADER_BOARD_NAME := mt6797
-
-# Bluetooth
-BOARD_HAVE_BLUETOOTH := true
-BOARD_BLUETOOTH_DOES_NOT_USE_RFKILL := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/teclast/M30/bluetooth
-
-# Deodex
-ifeq ($(HOST_OS),linux)
-  ifeq ($(WITH_DEXPREOPT),)
-    WITH_DEXPREOPT := true
-    ifneq ($(TARGET_BUILD_VARIANT),user)
-      # Retain classes.dex in APK's for non-user builds
-      DEX_PREOPT_DEFAULT := nostripping
-    endif
-  endif
-endif
-
-# Disable memcpy opt (for audio libraries)
-TARGET_CPU_MEMCPY_OPT_DISABLE := true
-
-# Enable Minikin text layout engine (will be the default soon)
-USE_MINIKIN := true
 
 # Filesystem
 TARGET_USERIMAGES_USE_F2FS := true
@@ -80,21 +57,6 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 3221225472
 BOARD_VENDORIMAGE_PARTITION_SIZE   := 687865856
 BOARD_FLASH_BLOCK_SIZE := 131072
 
-# Graphic
-USE_OPENGL_RENDERER := true
-TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
-NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
-
-BOARD_EGL_CFG := device/teclast/M30/display/egl.cfg
-
-# GPS
-BOARD_GPS_LIBRARIES := true
-BOARD_CONNECTIVITY_MODULE := conn_soc 
-BOARD_MEDIATEK_USES_GPS := true
-
-# Header
-TARGET_SPECIFIC_HEADER_PATH := device/teclast/M30/include
-
 # Kernel
 TARGET_PREBUILT_KERNEL := device/teclast/M30/kernel-dtb
 
@@ -106,27 +68,12 @@ BOARD_RAMDISK_OFFSET := 0x04f88000
 BOARD_TAGS_OFFSET := 0x03f88000
 BOARD_MKBOOTIMG_ARGS := --kernel_offset $(BOARD_KERNEL_OFFSET) --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_TAGS_OFFSET)
 
-# MTK Hardware
-BOARD_USES_MTK_HARDWARE := true
-BOARD_USES_LEGACY_MTK_AV_BLOB := true
-USE_CAMERA_STUB := true
-BOARD_PROVIDES_LIBRIL := true
-BOARD_PROVIDES_RILD := true
-BOARD_USE_SOFT_GATEKEEPER := true
-TARGET_SPECIFIC_CAMERA_PARAMETER_LIBRARY := libcamera_parameters_mtk
-
-BOARD_DISABLE_HW_ID_MATCH_CHECK := true
-SUPPRESS_MTK_AUDIO_BLOB_ERR_MSG := true
-
 # SELinux
 BOARD_SEPOLICY_DIRS := vendor/omni/sepolicy
 
 # Screen W/H
 TARGET_SCREEN_WIDTH := 2560
 TARGET_SCREEN_HEIGHT := 1600
-
-# SYSTEM
-TARGET_SYSTEM_PROP := device/teclast/M30/system.prop
 
 # TWRP
 DEVICE_RESOLUTION := 2560x1600
@@ -162,21 +109,4 @@ ifeq ($(TARGET_BUILD_VARIANT),eng)
    TWRP_INCLUDE_LOGCAT := true
    TARGET_USES_LOGD := true
 endif
-
-# MTK_WLAN_SUPPORT
-BOARD_WLAN_DEVICE		 := MediaTek
-BOARD_CONNECTIVITY_VENDOR        := MediaTek
-WPA_SUPPLICANT_VERSION           := VER_0_8_X
-BOARD_HOSTAPD_DRIVER             := NL80211
-BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_mt66xx
-BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_mt66xx
-WIFI_DRIVER_FW_PATH_PARAM        := "/dev/wmtWifi"
-WIFI_DRIVER_FW_PATH_STA          := STA
-WIFI_DRIVER_FW_PATH_AP           := AP
-WIFI_DRIVER_FW_PATH_P2P          := P2P
-WIFI_DRIVER_STATE_CTRL_PARAM	 := "/dev/wmtWifi"
-WIFI_DRIVER_STATE_ON		 := 1
-WIFI_DRIVER_STATE_OFF		 := 0
-
 

@@ -1,35 +1,26 @@
 #
-# Copyright (c) 2017-2019 Flowertome
+# Copyright (C) 2019-2020 The TwrpBuilder Open-Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#      http://www.apache.org/licenses/LICENSE-2.0
+# http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
 
 # Release name
-PRODUCT_RELEASE_NAME := Teclast M204G
+PRODUCT_RELEASE_NAME := Teclast M30
 
-# Inherit from AOSP 64-bit support
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-
-# Inherit from the common Open Source product configuration
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
+$(call inherit-product, build/target/product/embedded.mk)
 
 # Inherit from our custom product configuration
 $(call inherit-product, vendor/omni/config/common.mk)
-
-# Get the prebuilt list of APNs
-$(call inherit-product, vendor/omni/config/cdma.mk)
-
-# Inherit device configuration
-$(call inherit-product, device/teclast/M30/teclast.mk)
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := M30
@@ -37,3 +28,12 @@ PRODUCT_NAME := omni_M30
 PRODUCT_BRAND := Teclast
 PRODUCT_MODEL := Teclast M30
 PRODUCT_MANUFACTURER := Teclast
+
+# HACK: Set vendor patch level
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vendor.build.security_patch=2099-12-31
+
+PRODUCT_SYSTEM_PROPERTY_BLACKLIST += \
+    ro.product.device \
+    ro.product.name \
+    ro.build.product
