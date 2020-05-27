@@ -14,7 +14,7 @@ pipeline
 
     stages
     {
-        stage('Cleanup')
+        stage('clean up')
         { 
             steps
             {
@@ -32,7 +32,7 @@ pipeline
                 }
             }
         }
-        stage('Set link')
+        stage('set source')
         { 
             steps
             {
@@ -40,7 +40,7 @@ pipeline
                 {
                      try
                      {
-                         sh label: '', script: 'cp -a roomservice/M30.xml /home/android/SkyHawk/.repo/local_manifests/M30.xml'
+                         sh label: '', script: 'cp -a android.xml /home/android/SkyHawk/.repo/local_manifests/M30.xml'
                      }
                      catch (e)
                      {
@@ -50,7 +50,7 @@ pipeline
                 }
             }
         }
-        stage('update source')
+        stage('update workspace')
         { 
             steps
             {
@@ -58,9 +58,30 @@ pipeline
                 {
                      try
                      {
-                         dir('/home/android/SkyHawk/')
+                        dir('/home/android/SkyHawk/device/teclast/M30')
                          {
-                             sh label: '', script: '$REPO_SCRIPT sync gesangtome/android_device_teclast_m30'
+                             sh label: '', script: 'rsync -av $WORKSPACE/ ./'
+                         }
+                     }
+                     catch (e)
+                     {
+                         currentBuild.result = 'ABORTED'
+                         throw e
+                     }
+                }
+            }
+        }
+        stage('syncing source')
+        { 
+            steps
+            {
+                script
+                {
+                     try
+                     {
+                         dir('/home/android/SkyHawk')
+                         {
+                             sh label: '', script: '$REPO_SCRIPT sync gesangtome/android_device_teclast_m30 --force-sync'
                          }
                      }
                      catch (e)
@@ -81,7 +102,7 @@ pipeline
                      {
                          dir('/home/android/SkyHawk/')
                          {
-                             sh label: '', script: 'bash make.sh omni_M30-user'
+                             sh label: '', script: 'bash make.sh omni_M30-eng'
                          }
                      }
                      catch (e)
@@ -97,9 +118,16 @@ pipeline
     {
         success
         {
-            dir('/home/android/SkyHawk/out/target/product/M30')
+            dir('/home/android/SkyHawk/out/target/product/nx627j')
             {
-                archiveArtifacts artifacts: 'recovery.img', onlyIfSuccessful: true
+                archiveArtifacts artifacts: 'SHRP_v2.3_M30-*.zip', onlyIfSuccessful: true
+            }
+        }
+        cleanup
+        {
+            dir('/home/android/SkyHawk/out/target/product')
+            {
+                sh label: '', script: 'rm -rf M30/'
             }
         }
     }
