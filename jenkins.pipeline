@@ -122,7 +122,7 @@ pipeline
     {
         success
         {
-            dir('/home/android/SkyHawk/out/target/product/nx627j')
+            dir('/home/android/SkyHawk/out/target/product/M30')
             {
                 archiveArtifacts artifacts: 'SHRP_v2.3_M30-*.zip', onlyIfSuccessful: true
             }
